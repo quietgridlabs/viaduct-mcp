@@ -41,11 +41,15 @@ Issues = "https://github.com/quietgridlabs/viaduct-mcp/issues"
 viaduct-mcp = "viaduct_mcp.__main__:main"
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
 
-[tool.hatch.build.targets.wheel]
-packages = ["src/viaduct_mcp"]
+# Package code lives flat under src/; imports stay as viaduct_mcp.*
+[tool.setuptools.package-dir]
+"viaduct_mcp" = "src"
+
+[tool.setuptools]
+packages = ["viaduct_mcp", "viaduct_mcp.tools"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
@@ -54,6 +58,10 @@ testpaths = ["tests"]
 [tool.ruff]
 line-length = 100
 target-version = "py311"
+src = ["src", "tests"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["viaduct_mcp"]
