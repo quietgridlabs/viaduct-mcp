@@ -1,6 +1,6 @@
 [project]
 name = "viaduct-mcp"
-version = "2.0.0"
+version = "1.0.0"
 description = "Viaduct MCP server — C4 architecture models over the Model Context Protocol"
 readme = "README.md"
 requires-python = ">=3.11"
