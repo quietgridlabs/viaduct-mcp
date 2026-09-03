@@ -9,7 +9,7 @@ no long-term support line yet — upgrade by pulling the latest release or image
 
 Please **do not** open a public GitHub issue for security problems.
 
-Email **security@quietgridlabs.com** with:
+Email **support@quietgridlabs.com** with:
 
 - a description of the issue and its impact
 - steps to reproduce, or a proof of concept if you have one
