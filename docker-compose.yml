@@ -1,0 +1,23 @@
+services:
+  mcp:
+    build: .
+    image: viaduct-mcp:latest
+    container_name: viaduct-mcp
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      C4_MCP_TRANSPORT: streamable-http
+      C4_MCP_HOST: "0.0.0.0"
+      C4_MCP_PORT: "8080"
+      C4_API_URL: ${C4_API_URL:-https://c4.quietgridlabs.com}
+      C4_MCP_LOG_LEVEL: ${C4_MCP_LOG_LEVEL:-info}
+      C4_MCP_RATE_LIMIT: ${C4_MCP_RATE_LIMIT:-120}
+    ports:
+      - "8082:8080"
+    # Auth is per-request Authorization from the MCP client — never a server env token.
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"

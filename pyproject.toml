@@ -1,0 +1,59 @@
+[project]
+name = "viaduct-mcp"
+version = "2.0.0"
+description = "Viaduct MCP server — C4 architecture models over the Model Context Protocol"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Quiet Grid Labs" }]
+keywords = ["mcp", "c4", "architecture", "viaduct", "model-context-protocol"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development",
+  "Typing :: Typed",
+]
+dependencies = [
+  "mcp>=2.0.0,<3",
+  "httpx>=0.27,<1",
+  "pydantic>=2.7,<3",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8",
+  "pytest-asyncio>=0.23",
+  "respx>=0.21",
+  "ruff>=0.6",
+]
+
+[project.urls]
+Homepage = "https://c4.quietgridlabs.com"
+Repository = "https://github.com/quietgridlabs/viaduct-mcp"
+Issues = "https://github.com/quietgridlabs/viaduct-mcp/issues"
+
+[project.scripts]
+viaduct-mcp = "viaduct_mcp.__main__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/viaduct_mcp"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
